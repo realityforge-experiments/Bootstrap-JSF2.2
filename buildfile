@@ -21,7 +21,6 @@ define 'bootstrap-jsf' do
 
   iml.add_ejb_facet
   iml.add_jruby_facet
-  iml.add_web_and_jsf_facets
 
   ipr.add_exploded_war_artifact(project, :enable_jpa => true, :enable_ejb => true)
 end
