@@ -7,7 +7,8 @@
     <h:head>
         <title>#{msg['application.title']}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="css/bootstrap.css" />
+
+        <link type="text/css" rel="stylesheet" href="${request.contextPath}/resources/css/bootstrap.css" />
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -44,8 +45,9 @@
         </div> <!-- /container -->
 
         <!-- Placed at the end of the document so the pages load faster -->
-        <h:outputScript name="js/jquery-1.7.2.min.js" />
-        <h:outputScript library="js" name="bootstrap.min.js" />
+
+        <script type="text/javascript" language="javascript" src="${request.contextPath}/resources/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" language="javascript" src="${request.contextPath}/resources/js/bootstrap.min.js"></script>
     </h:body>
 
 </html>
