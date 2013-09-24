@@ -1,6 +1,6 @@
 package ca.pfroy.bootstrap.util;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * This class uses CDI to alias Java EE resources, such as the persistence context, to CDI beans
  */
-@ApplicationScoped
+@Dependent
 public class Resources {
 
     @Produces
