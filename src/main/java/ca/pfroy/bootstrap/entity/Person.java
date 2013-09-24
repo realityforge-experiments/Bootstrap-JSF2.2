@@ -1,22 +1,34 @@
-package ca.pfroy.bootstrap;
+package ca.pfroy.bootstrap.entity;
 
 import java.io.Serializable;
 
-/**
- * @author Michael Kurz
- */
 public class Person implements Serializable {
 
-    private final int id;
+    private int id;
 
-    private final String name;
+    private String name;
 
-    private final String email;
+    private String email;
 
     public Person(int id, String name, String email) {
         this.id = id;
         this.email = email;
         this.name = name;
+    }
+
+    public Person() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
