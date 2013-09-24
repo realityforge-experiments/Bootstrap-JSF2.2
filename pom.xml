@@ -8,7 +8,7 @@
     <packaging>war</packaging>
 
     <name>Bootstrap JSF2.2</name>
-    <description></description>
+    <description>Sample EE7 JSF application</description>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
