@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -30,18 +31,11 @@ public class PersonPage implements Serializable {
     @Inject
     private PersonRepository personRepository;
 
+    private Person newPerson;
+
     public List<Person> getPersons() {
         return personRepository.getPersons();
     }
-
-    public void addInfoMessage() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        String msg = "View action " + (ctx.isPostback() ? "on postback" : "on initial request");
-        ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
-        ctx.getExternalContext().getFlash().setKeepMessages(true);
-    }
-
-    private Person newPerson;
 
     @Produces
     @Named
