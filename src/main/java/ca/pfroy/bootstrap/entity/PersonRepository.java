@@ -27,10 +27,6 @@ public class PersonRepository
         return new ArrayList<>(persons.values());
     }
 
-    public Person getPerson(int id) {
-        return persons.get(id);
-    }
-
     public void register(final Person person) {
         persons.put(person.getId(), person);
     }
