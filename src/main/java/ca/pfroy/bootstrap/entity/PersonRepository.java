@@ -1,7 +1,5 @@
 package ca.pfroy.bootstrap.entity;
 
-import ca.pfroy.bootstrap.entity.Person;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
