@@ -4,3 +4,4 @@ repositories:
 
 artifacts:
   javax_javaee: javax:javaee-api:jar:7.0
+  javax_annotation: com.google.code.findbugs:jsr305:jar:2.0.1

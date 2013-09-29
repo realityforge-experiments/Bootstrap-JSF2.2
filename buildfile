@@ -11,7 +11,7 @@ define 'bootstrap-jsf' do
 
   project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
 
-  compile.with :javax_javaee#, :javax_annotation
+  compile.with :javax_javaee, :javax_annotation
 
   test.using :testng
 
