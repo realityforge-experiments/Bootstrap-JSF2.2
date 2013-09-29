@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
-@Interceptors({SecurityInterceptor.class})
 public class PersonPage implements Serializable {
 
     @Inject
