@@ -2,6 +2,8 @@ package ca.pfroy.bootstrap;
 
 import ca.pfroy.bootstrap.entity.Person;
 import ca.pfroy.bootstrap.entity.PersonRepository;
+import ca.pfroy.bootstrap.security.Secure;
+import ca.pfroy.bootstrap.security.SecurityInterceptor;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -10,6 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.InterceptorBinding;
+import javax.interceptor.Interceptors;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -19,6 +23,7 @@ import java.util.logging.Logger;
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
+@Interceptors({SecurityInterceptor.class})
 public class PersonPage implements Serializable {
 
     @Inject
@@ -42,6 +47,7 @@ public class PersonPage implements Serializable {
         return newPerson;
     }
 
+    @Secure("#{personPage.newPerson.name == 'fred'}")
     public void register() throws Exception {
         newPerson.setId((int) System.currentTimeMillis());
         personRepository.register(newPerson);
