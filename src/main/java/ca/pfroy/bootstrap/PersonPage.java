@@ -3,8 +3,9 @@ package ca.pfroy.bootstrap;
 import ca.pfroy.bootstrap.entity.Person;
 import ca.pfroy.bootstrap.entity.PersonRepository;
 import ca.pfroy.bootstrap.security.Secure;
-import ca.pfroy.bootstrap.security.SecurityInterceptor;
-
+import java.io.Serializable;
+import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -12,50 +13,50 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.interceptor.InterceptorBinding;
-import javax.interceptor.Interceptors;
-import java.io.Serializable;
-import java.util.List;
-import java.util.logging.Logger;
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
-public class PersonPage implements Serializable {
+public class PersonPage
+  implements Serializable
+{
+  @Inject
+  private Logger logger;
+  @Inject
+  private FacesContext facesContext;
+  @Inject
+  private PersonRepository personRepository;
 
-    @Inject
-    private Logger logger;
+  private Person newPerson;
 
-    @Inject
-    private FacesContext facesContext;
+  public List<Person> getPersons()
+  {
+    return personRepository.getPersons();
+  }
 
-    @Inject
-    private PersonRepository personRepository;
+  @Produces
+  @Named
+  public Person getNewPerson()
+  {
+    return newPerson;
+  }
 
-    private Person newPerson;
+  @Secure( "#{personPage.newPerson.name == 'fred'}" )
+  public void register()
+    throws Exception
+  {
+    newPerson.setId( (int) System.currentTimeMillis() );
+    personRepository.register( newPerson );
+    facesContext.addMessage( null,
+                             new FacesMessage( FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful" ) );
+    initNewMember();
+  }
 
-    public List<Person> getPersons() {
-        return personRepository.getPersons();
-    }
-
-    @Produces
-    @Named
-    public Person getNewPerson() {
-        return newPerson;
-    }
-
-    @Secure("#{personPage.newPerson.name == 'fred'}")
-    public void register() throws Exception {
-        newPerson.setId((int) System.currentTimeMillis());
-        personRepository.register(newPerson);
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful"));
-        initNewMember();
-    }
-
-    @PostConstruct
-    public void initNewMember() {
-        newPerson = new Person();
-    }
+  @PostConstruct
+  public void initNewMember()
+  {
+    newPerson = new Person();
+  }
 }
