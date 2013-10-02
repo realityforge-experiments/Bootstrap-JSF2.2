@@ -49,7 +49,7 @@
 
                     <div class="form-actions">
                         <h:commandButton id="register"
-                                         action="#{personPage.register}" value="Register"
+                                         action="#{personController.register}" value="Register"
                                          styleClass="btn btn-primary"/>
                     </div>
                 </fieldset>
@@ -60,11 +60,11 @@
         <div class="well">
             <h2>Members</h2>
             <br/>
-            <h:panelGroup rendered="#{empty personPage.persons}">
+            <h:panelGroup rendered="#{empty personController.persons}">
                 <em>No registered members.</em>
             </h:panelGroup>
-            <h:dataTable id="dataTable" var="_member" value="#{personPage.persons}"
-                         rendered="#{not empty personPage.persons}"
+            <h:dataTable id="dataTable" var="_member" value="#{personController.persons}"
+                         rendered="#{not empty personController.persons}"
                          styleClass="table table-striped table-bordered">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
@@ -79,7 +79,7 @@
                     #{_member.email}
                 </h:column>
                 <f:facet name="footer">
-                    Person Count: #{personPage.persons.size()}
+                    Person Count: #{personController.persons.size()}
                 </f:facet>
             </h:dataTable>
         </div>

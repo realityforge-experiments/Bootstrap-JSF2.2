@@ -19,7 +19,7 @@ import javax.inject.Named;
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
-public class PersonPage
+public class PersonController
   implements Serializable
 {
   @Inject
